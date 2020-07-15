@@ -37,6 +37,7 @@ Main
       - Price ( [prices->final] )
       - List Price  ( [prices->list_price] )
       - Discount ( [prices->list_price] - [prices->final] )
+      - View Package Button ( "https://ajmadison.com[url] )
 ```
 
 ### Tech stack
@@ -49,6 +50,7 @@ Main
 ### Bonus
 
 - Sort and filtering on mobile included in Figma comp.
+- Implement the Show More feature.
 - Write clear **documentation** on how the app was designed and how to run the code.
 - Provide proper unit tests.
 - Provide components in [Storybook](https://storybook.js.org) with tests.
