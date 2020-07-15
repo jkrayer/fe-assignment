@@ -77,4 +77,4 @@ Fork this repo and send us a pull request when you think you are done. There is 
 
 > What if I have a question?
 
-Just create a new issue in this repo and we will respond and get back to you quickly.
+Just email nate@ajmadison.com
