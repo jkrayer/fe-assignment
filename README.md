@@ -6,7 +6,7 @@ Be sure to read **all** of this document carefully, and follow the guidelines wi
 
 Use HTML, CSS, and JavaScript to implement the following mock-up.  The sort and filtering on mobile is bonus
 
-> [Source Figma file](https://www.figma.com/file/jjs1gqgBQJhMZP1xSA4O8w/Coding-Test?node-id=0%3A1)
+> [Source Figma file](https://www.figma.com/file/864G1U99suRA6O5DHPwdqG/Coding-Test?node-id=0%3A1)
 
 You will need to leverage our API for 'appliance packages' to fill in the details and functionality as described below. Complete as much of this assignment as you can within a three and a half hour time period. 
 **The look and feel is more important than the functionality, so if you feel that the sorting and filtering logic will take too long, just start with static data, it doesn't have to work**
