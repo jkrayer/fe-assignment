@@ -16,9 +16,11 @@ function Filters({ types }) {
         </fieldset>
         <fieldset>
           <legend>Appliance Type</legend>
-          <label>
-            <input type="checkbox" /> Map Types Here
-          </label>
+          {types.map(type => (
+            <label key={type}>
+              <input type="checkbox" value={type} /> {type}
+            </label>
+          ))}
         </fieldset>
         <fieldset>
           <legend>Delivery Type</legend>

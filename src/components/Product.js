@@ -9,7 +9,9 @@ function Product({ product }) {
     <div>
       <figure>Image</figure>
       <p>11 {product.items[0]['~product_type']}</p>
-      <p>{product.description}</p>
+      <p>
+        {product.brand} {product.series} {product.description}
+      </p>
       {QuickShip}
       <Price {...product.prices} />
       <a href={product.url}>ViewPackage</a>

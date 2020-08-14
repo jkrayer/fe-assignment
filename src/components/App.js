@@ -21,7 +21,7 @@ import Product from './Product';
 
 function App() {
   const [products, setProducts] = React.useState([]);
-  const FilterTypes = new Set();
+  const [filters, setFilters] = React.useState([]);
 
   React.useEffect(() => {
     if (products.length > 0) {
@@ -37,7 +37,19 @@ function App() {
         }
 
         const products = await res.json();
+        const filterTypes = new Set();
+
+        products.forEach(product => {
+          product.itemTypes = [];
+          product.items.forEach(item => {
+            const itemType = item['~product_type'];
+            product.itemTypes.push(itemType);
+            filterTypes.add(itemType);
+          });
+        });
+
         setProducts(products);
+        setFilters(Array.from(filterTypes));
       } catch (err) {
         console.error(err);
       }
@@ -56,10 +68,10 @@ function App() {
           refrigerators.
         </p>
       </header>
-      <Filters types={[]} />
+      <Filters types={filters} />
       <section>
         {products.map(p => (
-          <Product product={p} />
+          <Product product={p} key={p.sku} />
         ))}
       </section>
     </main>
