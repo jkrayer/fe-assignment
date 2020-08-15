@@ -67,7 +67,7 @@ function App() {
           refrigerators.
         </p>
       </header>
-      <Filters types={filters} />
+      <Filters types={filters} which={windowWidth} />
       <section className={styles.row}>
         {products.map(p => (
           <Product product={p} key={p.sku} truncate={toSevenSmall} />
