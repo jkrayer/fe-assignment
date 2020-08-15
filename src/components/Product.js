@@ -2,23 +2,9 @@ import React from 'react';
 import styles from './Product.module.css';
 import Placeholder from './Placeholder';
 import Price from './Price';
-import { truncate, debounce } from '../lib/';
 
-const toSeven = x => truncate(7, x);
-
-function Product({ product }) {
-  const [windowWidth, seWindowWidth] = React.useState(0);
-  const toSevenSmall = x => (windowWidth < 500 ? toSeven(x) : x);
-
-  React.useLayoutEffect(() => {
-    const updateSize = debounce(() => seWindowWidth(window.innerWidth));
-
-    seWindowWidth(window.innerWidth);
-    window.addEventListener('resize', updateSize);
-    return () => window.removeEventListener('resize', updateSize);
-  }, []);
-
-  const QuickShip = ( // !product.is_quick_ship ? null :
+function Product({ product, truncate }) {
+  const QuickShip = !product.is_quick_ship ? null : (
     <img
       src="quickship-pdp.png"
       width="79"
@@ -38,7 +24,7 @@ function Product({ product }) {
           <b>
             {product.brand} {product.series}
           </b>{' '}
-          {toSevenSmall(product.description)}
+          {truncate(product.description)}
         </p>
         {QuickShip}
         <Price {...product.prices} />

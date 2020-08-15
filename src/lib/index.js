@@ -33,6 +33,6 @@ export function debounce(fn, time = 20) {
 
   return () => {
     clearTimeout(t);
-    t = setTimeout(20);
+    t = setTimeout(fn, 20);
   };
 }

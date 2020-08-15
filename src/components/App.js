@@ -3,26 +3,24 @@ import fetch from 'cross-fetch';
 import Filters from './Filters';
 import Product from './Product';
 import styles from './App.module.css';
+import { truncate, debounce } from '../lib/';
 
-// (async () => {
-//   try {
-//     const res = await fetch('//demo3211013.mockable.io/ajmad');
-//
-//     if (res.status >= 400) {
-//       throw new Error('Bad response from server');
-//     }
-//
-//     const user = await res.json();
-//
-//     console.log('u', user);
-//   } catch (err) {
-//     console.error(err);
-//   }
-// })();
+const toSeven = x => truncate(7, x);
 
 function App() {
   const [products, setProducts] = React.useState([]);
   const [filters, setFilters] = React.useState([]);
+  const [windowWidth, seWindowWidth] = React.useState(0);
+
+  const toSevenSmall = x => (windowWidth < 400 ? toSeven(x) : x);
+
+  React.useLayoutEffect(() => {
+    const updateSize = debounce(() => seWindowWidth(window.innerWidth));
+
+    seWindowWidth(window.innerWidth);
+    window.addEventListener('resize', updateSize);
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
 
   React.useEffect(() => {
     if (products.length > 0) {
@@ -72,7 +70,7 @@ function App() {
       <Filters types={filters} />
       <section className={styles.row}>
         {products.map(p => (
-          <Product product={p} key={p.sku} />
+          <Product product={p} key={p.sku} truncate={toSevenSmall} />
         ))}
       </section>
     </main>
