@@ -1,0 +1,41 @@
+.price {
+  order: -1;
+}
+
+@media (min-width: 670px) {
+  .price {
+    order: 0;
+    margin-top: 8px;
+    margin-bottom: 15px;
+  }
+}
+
+.p {
+  margin: 0;
+  padding: 0;
+}
+
+.final {
+  margin: 0 0 5px;
+  padding: 0;
+  font: 700 0.9375rem/1.2 'Roboto', Helvetica, Arial sans-serif;
+  color: #222;
+}
+
+@media (min-width: 670px) {
+  .final {
+    font-size: 1.25rem;
+    line-height: 1.15;
+  }
+}
+
+.savings {
+  font: 500 0.75rem/1.25 'Roboto', Helvetica, Arial sans-serif;
+  color: #3b8448;
+}
+
+.listprice {
+  font: 0.75rem/1.25 HelveticaNeue, Arial, sans-serif;
+  text-decoration-line: line-through;
+  color: #666;
+}

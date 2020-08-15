@@ -2,6 +2,7 @@ import React from 'react';
 import fetch from 'cross-fetch';
 import Filters from './Filters';
 import Product from './Product';
+import styles from './App.module.css';
 
 // (async () => {
 //   try {
@@ -57,10 +58,10 @@ function App() {
   }, [products.length]);
 
   return (
-    <main className="App">
-      <header>
-        <h1>Appliance Packages</h1>
-        <p>
+    <main>
+      <header className="wrapper">
+        <h1 className={styles.main}>Appliance Packages</h1>
+        <p className={styles.subtext}>
           Looking for a great deal on home appliances? Packages are the best
           bet. Most appliance packages consist of a range, refrigerator,
           over-the-range microwave, and dishwasher. However, some upscale brands
@@ -69,7 +70,7 @@ function App() {
         </p>
       </header>
       <Filters types={filters} />
-      <section>
+      <section className={styles.row}>
         {products.map(p => (
           <Product product={p} key={p.sku} />
         ))}
