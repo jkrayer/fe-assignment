@@ -25,12 +25,15 @@ code {
   box-sizing: border-box;
   padding: 14px 35px;
   border: 1px solid #9b9b9b;
-  /* margin-left: auto; */
   font: 700 0.9375rem/1.2 'Roboto', Helvetica, Arial, sans-serif;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #3b8448;
   background-color: #fff;
+}
+
+.button.right {
+  margin-left: auto;
 }
 
 .button:disabled {
