@@ -25,7 +25,7 @@ function FilterBar() {
           &nbsp; Quick Ship
         </label>
       </div>
-      <button type="reset" className={styles.button}>
+      <button type="reset" className="button">
         Clear All
       </button>
     </form>

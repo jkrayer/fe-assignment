@@ -1,0 +1,88 @@
+.sort {
+  box-sizing: border-box;
+  width: calc(100% - 30px);
+  padding-top: 14px;
+  padding-bottom: 13px;
+  border: 1px solid #f0eded;
+  margin-left: 15px;
+  font: 500 0.9375rem/1.2 'Roboto', Helvetica, Arial sans-serif;
+  text-transform: uppercase;
+  color: #23408a;
+  background-color: #fbfbfb;
+}
+
+.form {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  background: #fff;
+}
+
+.title {
+  display: flex;
+  padding: 30px 0 20px;
+  border-bottom: 1px solid #f0eded;
+  margin: 0 15px 25px;
+  font: 400 1.5625rem/1.16 'Roboto', Helvetica, Arial sans-serif;
+  color: #222;
+}
+
+.close {
+  align-self: flex-end;
+  border: none;
+  margin-left: auto;
+  font-size: 1.5rem;
+  background-color: transparent;
+}
+
+.label {
+  font: 500 0.9375rem/1.2 'Roboto', Helvetica, Arial sans-serif;
+  color: #000;
+}
+
+.label > span {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.checkLabel {
+  display: block;
+  margin-bottom: 10px;
+  font: 0.9375rem/1.2 'Roboto', Helvetica, Arial, sans-serif;
+  color: #666666;
+}
+
+.fieldset {
+  padding: 0;
+  border: none;
+  margin: 20px 15px;
+}
+
+.fieldset > .button {
+  width: 50%;
+}
+
+.select {
+  box-sizing: border-box;
+  width: calc(100% - 45px);
+  height: 45px;
+  padding-right: 20px;
+  padding-left: 20px;
+  border: 1px solid #ccc;
+  margin-right: 36px;
+  font: 0.9375rem/1.2 HelveticaNeue, Helvetica, Arial, sans-serif;
+  color: #666;
+  background: #fff;
+}
+
+.toggle {
+  border: none;
+  outline: none;
+  margin-left: auto;
+  font: 500 1.25rem/1.15 'Roboto', Helvetica, Arial, sans-serif;
+  color: #9b9b9b;
+  background-color: transparent;
+}
