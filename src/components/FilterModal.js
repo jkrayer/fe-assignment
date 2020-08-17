@@ -14,7 +14,7 @@ function FilterModal({ types, quickShip }) {
   }
 
   const shippingToggle = !quickShip ? null : (
-    <fieldset className={styles.fieldset}>
+    <fieldset className={styles.fieldset} data-testid="qs-fieldset">
       <legend className={!delivery ? 'legend closed' : 'legend'}>
         <span>Delivery Type</span>
         <button
@@ -34,6 +34,7 @@ function FilterModal({ types, quickShip }) {
   if (!modal) {
     return (
       <button
+        data-testid="modal-button"
         type="button"
         onClick={() => setModal(true)}
         className={styles.sort}
@@ -43,7 +44,7 @@ function FilterModal({ types, quickShip }) {
     );
   } else {
     return (
-      <form className={styles.form}>
+      <form className={styles.form} data-testid="modal-form">
         <h1 className={styles.title}>
           Sort &amp; Filter{' '}
           <button type="button" onClick={handleClose} className={styles.close}>

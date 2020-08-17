@@ -36,3 +36,11 @@ export function debounce(fn, time = 20) {
     t = setTimeout(fn, 20);
   };
 }
+
+export function any(key, products) {
+  for (let i = 0; i < products.length; i++) {
+    if (products[i][key]) return true;
+  }
+
+  return false;
+}

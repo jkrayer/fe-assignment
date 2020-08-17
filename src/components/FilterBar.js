@@ -4,14 +4,14 @@ import styles from './FilterBar.module.css';
 
 function FilterBar({ types, quickShip }) {
   const shippingToggle = !quickShip ? null : (
-    <div className={styles.fieldset}>
+    <div className={styles.fieldset} data-testid="qs-fieldset">
       <div className={styles.legend}>Delivery Method:</div>
       <Check name="Quick Ship" val="quickShip" />
     </div>
   );
 
   return (
-    <form className={styles.form}>
+    <form className={styles.form} data-testid="bar">
       <label className={styles.label}>
         <span>Select Appliances:</span>
         <select className={styles.select}>

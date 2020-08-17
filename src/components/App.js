@@ -3,24 +3,22 @@ import fetch from 'cross-fetch';
 import Filters from './Filters';
 import Product from './Product';
 import styles from './App.module.css';
-import { truncate, debounce } from '../lib/';
+import { any, truncate, debounce } from '../lib/';
 
-const toSeven = x => truncate(7, x);
 const count = 12;
 
+// test method to fake network request time
 function p(val) {
   return new Promise((resolve, reject) => {
     setTimeout(() => resolve(val), 3000);
   });
 }
 
-function any(products) {
-  for (let i = 0; i < products.length; i++) {
-    if (products[i].is_quick_ship) return true;
-  }
+// Truncate x to 7 words
+const toSeven = x => truncate(7, x);
 
-  return false;
-}
+// Test [Object] for is_quick_ship = true
+const anyQuickShip = x => any('is_quick_ship', x);
 
 function App() {
   const [products, setProducts] = React.useState([]);
@@ -41,7 +39,7 @@ function App() {
 
     return p(more).then(x => {
       if (!hasQuickship) {
-        setHasQuickship(any(x));
+        setHasQuickship(anyQuickShip(x));
       }
       setVisibleProducts(visibleProducts.concat(x));
       setStartIndex(nextIndex);
@@ -86,7 +84,7 @@ function App() {
 
         setProducts(products);
         setVisibleProducts(visible);
-        setHasQuickship(any(visible));
+        setHasQuickship(anyQuickShip(visible));
         setFilters(Array.from(filterTypes));
       } catch (err) {
         console.error(err);
