@@ -6,13 +6,36 @@ import styles from './App.module.css';
 import { truncate, debounce } from '../lib/';
 
 const toSeven = x => truncate(7, x);
+const count = 12;
+
+function p(val) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve(val), 3000);
+  });
+}
 
 function App() {
   const [products, setProducts] = React.useState([]);
+  const [visibleProducts, setVisibleProducts] = React.useState([]);
   const [filters, setFilters] = React.useState([]);
   const [windowWidth, seWindowWidth] = React.useState(0);
+  const [startIndex, setStartIndex] = React.useState(12);
+  const [loading, setLoading] = React.useState(false);
 
   const toSevenSmall = x => (windowWidth < 400 ? toSeven(x) : x);
+
+  const handleShowMore = () => {
+    const nextIndex = startIndex + count;
+    const more = products.slice(startIndex, nextIndex);
+
+    setLoading(true);
+
+    return p(more).then(x => {
+      setVisibleProducts(visibleProducts.concat(x));
+      setStartIndex(nextIndex);
+      setLoading(false);
+    });
+  };
 
   React.useLayoutEffect(() => {
     const updateSize = debounce(() => seWindowWidth(window.innerWidth));
@@ -48,6 +71,7 @@ function App() {
         });
 
         setProducts(products);
+        setVisibleProducts(products.slice(0, 12));
         setFilters(Array.from(filterTypes));
       } catch (err) {
         console.error(err);
@@ -69,9 +93,24 @@ function App() {
       </header>
       <Filters types={filters} which={windowWidth} />
       <section className={styles.row}>
-        {products.map(p => (
+        {visibleProducts.map(p => (
           <Product product={p} key={p.sku} truncate={toSevenSmall} />
         ))}
+        <button
+          type="button"
+          onClick={handleShowMore}
+          className={startIndex < products.length ? 'button' : 'button hidden'}
+          disabled={loading}
+        >
+          Show More
+          <img
+            src="spinner.gif"
+            width="18"
+            height="18"
+            alt=""
+            className={loading ? '' : 'hidden'}
+          />
+        </button>
       </section>
     </main>
   );
