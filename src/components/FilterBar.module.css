@@ -18,16 +18,12 @@
   color: #222;
 }
 
-.label > span {
-  display: block;
+.legend {
+  padding-bottom: 10px;
 }
 
-.checkLabel {
-  display: flex;
-  align-items: center;
-  height: 45px;
-  font: 0.9375rem/1.2 'Roboto', Helvetica, Arial, sans-serif;
-  color: #666666;
+.label > span {
+  display: block;
 }
 
 .select {
@@ -56,6 +52,7 @@
 
   .legend {
     padding-right: 10px;
+    padding-bottom: 0;
   }
 
   .checkLabel {

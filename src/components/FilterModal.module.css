@@ -48,13 +48,6 @@
   margin-bottom: 12px;
 }
 
-.checkLabel {
-  display: block;
-  margin-bottom: 10px;
-  font: 0.9375rem/1.2 'Roboto', Helvetica, Arial, sans-serif;
-  color: #666666;
-}
-
 .fieldset {
   padding: 0;
   border: none;
@@ -85,4 +78,8 @@
   font: 500 1.25rem/1.15 'Roboto', Helvetica, Arial, sans-serif;
   color: #9b9b9b;
   background-color: transparent;
+}
+
+.spacer {
+  margin-bottom: 10px;
 }

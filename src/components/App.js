@@ -14,6 +14,14 @@ function p(val) {
   });
 }
 
+function any(products) {
+  for (let i = 0; i < products.length; i++) {
+    if (products[i].is_quick_ship) return true;
+  }
+
+  return false;
+}
+
 function App() {
   const [products, setProducts] = React.useState([]);
   const [visibleProducts, setVisibleProducts] = React.useState([]);
@@ -21,6 +29,7 @@ function App() {
   const [windowWidth, seWindowWidth] = React.useState(0);
   const [startIndex, setStartIndex] = React.useState(12);
   const [loading, setLoading] = React.useState(false);
+  const [hasQuickship, setHasQuickship] = React.useState(false);
 
   const toSevenSmall = x => (windowWidth < 400 ? toSeven(x) : x);
 
@@ -31,6 +40,9 @@ function App() {
     setLoading(true);
 
     return p(more).then(x => {
+      if (!hasQuickship) {
+        setHasQuickship(any(x));
+      }
       setVisibleProducts(visibleProducts.concat(x));
       setStartIndex(nextIndex);
       setLoading(false);
@@ -70,8 +82,11 @@ function App() {
           });
         });
 
+        const visible = products.slice(0, 12);
+
         setProducts(products);
-        setVisibleProducts(products.slice(0, 12));
+        setVisibleProducts(visible);
+        setHasQuickship(any(visible));
         setFilters(Array.from(filterTypes));
       } catch (err) {
         console.error(err);
@@ -91,7 +106,7 @@ function App() {
           refrigerators.
         </p>
       </header>
-      <Filters types={filters} which={windowWidth} />
+      <Filters types={filters} which={windowWidth} shipping={hasQuickship} />
       <section className={styles.row}>
         {visibleProducts.map(p => (
           <Product product={p} key={p.sku} truncate={toSevenSmall} />

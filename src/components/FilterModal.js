@@ -1,7 +1,8 @@
 import React from 'react';
+import Check from './Check';
 import styles from './FilterModal.module.css';
 
-function FilterModal({ types }) {
+function FilterModal({ types, quickShip }) {
   const [modal, setModal] = React.useState(false);
   const [appliance, setAppliance] = React.useState(false);
   const [delivery, setDelivery] = React.useState(false);
@@ -11,6 +12,24 @@ function FilterModal({ types }) {
     setAppliance(false);
     setDelivery(false);
   }
+
+  const shippingToggle = !quickShip ? null : (
+    <fieldset className={styles.fieldset}>
+      <legend className={!delivery ? 'legend closed' : 'legend'}>
+        <span>Delivery Type</span>
+        <button
+          type="button"
+          className={styles.toggle}
+          onClick={() => setDelivery(!delivery)}
+        >
+          {delivery ? '-' : '+'}
+        </button>
+      </legend>
+      <div className={!delivery ? 'hidden' : ''}>
+        <Check name="Quick Ship" val="quickShip" />
+      </div>
+    </fieldset>
+  );
 
   if (!modal) {
     return (
@@ -35,14 +54,15 @@ function FilterModal({ types }) {
           <label className={styles.label}>
             <span>Sort By:</span>
             <select className={styles.select}>
-              <option>Highest Price</option>
-              <option>Lowest Price</option>
+              <option value="none">Sort...</option>
+              <option value="low">Lowest Price</option>
+              <option value="high">Highest Price</option>
             </select>
           </label>
         </fieldset>
         <fieldset className={styles.fieldset}>
           <legend className="legend">Filter By</legend>
-          <div class="button-bar">
+          <div className="button-bar">
             <button
               className="button"
               type="reset"
@@ -72,29 +92,13 @@ function FilterModal({ types }) {
           </legend>
           <div className={!appliance ? 'hidden' : ''}>
             {types.map(type => (
-              <label className={styles.checkLabel} key={type}>
-                <input type="checkbox" value={type} /> {type}
-              </label>
+              <div key={type} className={styles.spacer}>
+                <Check name={type} val={type} />
+              </div>
             ))}
           </div>
         </fieldset>
-        <fieldset className={styles.fieldset}>
-          <legend className={!delivery ? 'legend closed' : 'legend'}>
-            <span>Delivery Type</span>
-            <button
-              type="button"
-              className={styles.toggle}
-              onClick={() => setDelivery(!delivery)}
-            >
-              {delivery ? '-' : '+'}
-            </button>
-          </legend>
-          <div className={!delivery ? 'hidden' : ''}>
-            <label className={styles.checkLabel}>
-              <input type="checkbox" value="Quick Ship" /> Quick Ship
-            </label>
-          </div>
-        </fieldset>
+        {shippingToggle}
       </form>
     );
   }
